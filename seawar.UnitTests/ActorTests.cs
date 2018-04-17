@@ -19,5 +19,4 @@ namespace seawar.UnitTests {
          Assert.AreEqual(new Vec(0, 1), a.Position);
       }
    }
-
 }

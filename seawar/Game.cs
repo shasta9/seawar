@@ -15,12 +15,7 @@ namespace seawar {
          actors.Add(actor);
       }
 
-      public void SetCommand(ICommand command) {
-         commandQueue.Enqueue(command);
-      }
-
       public void Update(Duration delta) {
-         ProcessCommands();
          foreach (var actor in actors) {
             actor.Update(delta);
          }

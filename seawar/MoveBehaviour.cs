@@ -1,4 +1,5 @@
-﻿using NodaTime;
+﻿using System;
+using NodaTime;
 
 namespace seawar {
    public class MoveBehaviour : Behaviour {
@@ -54,6 +55,12 @@ namespace seawar {
       }
       public void Execute() {
          actor.StopMove(move);
+      }
+   }
+
+   public static class Commands {
+      public static Action StartMove(Actor actor, Move move) {
+         return () => actor.StartMove(move);
       }
    }
 }
