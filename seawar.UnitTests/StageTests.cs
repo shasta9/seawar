@@ -15,6 +15,21 @@ namespace seawar.UnitTests {
          Assert.AreEqual(-3, stage.GetElevation(new Vec(1, 0)));
          Assert.AreEqual(-1, stage.GetElevation(new Vec(0, 1)));
          Assert.AreEqual(4, stage.GetElevation(new Vec(2, 2)));
-      }    
+      }
+
+      [Test]
+      public void IsWater() {
+         Assert.Fail("Not implemented yet");
+      }
+
+      [Test]
+      public void IsLand() {
+         Assert.Fail("Not implemented yet");
+      }
+
+      [Test]
+      public void GetActorAt() {
+         Assert.Fail("Not implemented yet");
+      }
    }
 }

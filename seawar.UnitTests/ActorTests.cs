@@ -32,13 +32,22 @@ namespace seawar.UnitTests {
          Assert.AreEqual(new Vec(1, 1), a.Position);
       }
 
+      [Test]
+      public void ChangesDepth() {
+         Assert.Fail("Not implemented yet");
+      }
+
+      [Test]
+      public void StopsIfTooShallow() {
+         Assert.Fail("Not implemented yet");
+      }
 
       [Test]
       public void StopsAtShore() {
          var topo = new[,] {
-            {-100, -100,   10},
-            {-100, -100,   10},
-            {  10,   10,   10}
+            {-1, -1,  0},
+            {-1, -1,  0},
+            { 0,  0,  0}
          };
          var stage = new Stage(topo);
          var game = new Game(stage);
@@ -49,6 +58,11 @@ namespace seawar.UnitTests {
             game.Update(Duration.FromMilliseconds(100));
          }
          Assert.AreEqual(new Vec(0, 1), actor.Position);
+      }
+
+      [Test]
+      public void CollidesWithActor() {
+         Assert.Fail("Not implemented yet");
       }
    }
 }
