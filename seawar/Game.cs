@@ -3,11 +3,11 @@ using NodaTime;
 
 namespace seawar {
    public class Game {
-      private readonly Map map;
+      private readonly Stage stage;
       private readonly List<Actor> actors = new List<Actor>();
 
-      public Game(Map map) {
-         this.map = map;
+      public Game(Stage stage) {
+         this.stage = stage;
       }
 
       public void AddActor(Actor actor) {

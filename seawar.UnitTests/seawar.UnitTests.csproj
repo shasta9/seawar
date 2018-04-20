@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ActorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StageTests.cs" />
     <Compile Include="VecTests.cs" />
   </ItemGroup>
   <ItemGroup>
