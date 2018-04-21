@@ -19,12 +19,28 @@ namespace seawar.UnitTests {
 
       [Test]
       public void IsWater() {
-         Assert.Fail("Not implemented yet");
+         var topo = new[,] {
+            { -1,  0},
+            {  1,  2}
+         };
+         var stage = new Stage(topo);
+         Assert.IsTrue(stage.IsWater(new Vec(0, 0)));
+         Assert.IsTrue(stage.IsWater(new Vec(1, 0)));
+         Assert.IsFalse(stage.IsWater(new Vec(0, 1)));
+         Assert.IsFalse(stage.IsWater(new Vec(1, 1)));
       }
 
       [Test]
       public void IsLand() {
-         Assert.Fail("Not implemented yet");
+         var topo = new[,] {
+            { -1,  0},
+            {  1,  2}
+         };
+         var stage = new Stage(topo);
+         Assert.IsFalse(stage.IsLand(new Vec(0, 0)));
+         Assert.IsFalse(stage.IsLand(new Vec(1, 0)));
+         Assert.IsTrue(stage.IsLand(new Vec(0, 1)));
+         Assert.IsTrue(stage.IsLand(new Vec(1, 1)));
       }
 
       [Test]

@@ -55,5 +55,12 @@ namespace seawar.UnitTests {
          Assert.AreEqual(new Vec(-2, -2), a - b);
          Assert.AreEqual(new Vec(2, 2), b - a);
       }
+
+      [Test]
+      public void Multiplication() {
+         Assert.AreEqual(new Vec(2, 0), new Vec(1, 0) * 2);
+         Assert.AreEqual(new Vec(0, 2), new Vec(0, 1) * 2);
+         Assert.AreEqual(new Vec(2, 2), new Vec(1, 1) * 2);
+      }
    }
 }

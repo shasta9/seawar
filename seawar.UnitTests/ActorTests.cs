@@ -6,7 +6,7 @@ namespace seawar.UnitTests {
    public class ActorTests {
       [Test]
       public void Movement() {
-         var a = new Actor();
+         var a = new Actor(null);
          a.StartMove(new Move(Direction.North, 1, 1.0));
          Assert.AreEqual(new Vec(0, 0), a.Position);
          a.Update(Duration.FromSeconds(0.5));
@@ -19,7 +19,7 @@ namespace seawar.UnitTests {
 
       [Test]
       public void DiagonalMove() {
-         var a = new Actor();
+         var a = new Actor(null);
          a.StartMove(new Move(Direction.NorthEast, 1, 1.0));
          Assert.AreEqual(new Vec(0, 0), a.Position);
          a.Update(Duration.FromSeconds(1.0));
@@ -51,7 +51,7 @@ namespace seawar.UnitTests {
          };
          var stage = new Stage(topo);
          var game = new Game(stage);
-         var actor = new Actor();
+         var actor = new Actor(null);
          game.AddActor(actor);
          actor.StartMove(new Move(Direction.North, 3, 1));
          for (int i = 0; i < 30; i++) {

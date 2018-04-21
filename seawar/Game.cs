@@ -3,12 +3,13 @@ using NodaTime;
 
 namespace seawar {
    public class Game {
-      private readonly Stage stage;
       private readonly List<Actor> actors = new List<Actor>();
 
       public Game(Stage stage) {
-         this.stage = stage;
+         Stage = stage;
       }
+
+      public Stage Stage { get; }
 
       public void AddActor(Actor actor) {
          actors.Add(actor);

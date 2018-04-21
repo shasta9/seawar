@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace seawar
-{
-   public struct Vec {
+namespace seawar {
+   public struct Vec : IEquatable<Vec> {
       public int X { get; }
       public int Y { get; }
 
@@ -23,9 +22,15 @@ namespace seawar
          }
       }
 
-      public override bool Equals(object obj) {
-         return base.Equals(obj);
+      public override string ToString() {
+         return $"({X},{Y})";
       }
+
+      public override bool Equals(object obj) {
+         if (ReferenceEquals(null, obj)) return false;
+         return obj is Vec && Equals((Vec) obj);
+      }
+
 
       public bool Equals(Vec other) {
          return X == other.X && Y == other.Y;
@@ -37,16 +42,24 @@ namespace seawar
          }
       }
 
-      public override string ToString() {
-         return $"({X},{Y})";
-      }
-
       public static Vec operator +(Vec a, Vec b) {
          return new Vec(a.X + b.X, a.Y + b.Y);
       }
 
       public static Vec operator -(Vec a, Vec b) {
          return new Vec(a.X - b.X, a.Y - b.Y);
+      }
+
+      public static Vec operator *(Vec a, int multiplier) {
+         return new Vec(a.X * multiplier, a.Y * multiplier);
+      }
+
+      public static bool operator ==(Vec a, Vec b) {
+         return a.Equals(b);
+      }
+
+      public static bool operator !=(Vec a, Vec b) {
+         return !(a == b);
       }
    }
 }
