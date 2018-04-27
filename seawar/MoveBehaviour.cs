@@ -17,7 +17,7 @@ namespace seawar {
 
    public static class Commands {
       public static Action StartMove(Actor actor, Move move) {
-         return () => actor.StartMove(move);
+         return null;
       }
    }
 }

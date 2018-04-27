@@ -3,11 +3,8 @@
 namespace seawar {
    public class Actor {
 
-      private Game game;
-      private bool isMoving;
-      private Move move;
-      private double distance;
-      private Vec moveEndPos;
+      private readonly Game game;
+      private IAction nextAction;
 
       public Actor(Game game) {
          this.game = game;
@@ -16,37 +13,54 @@ namespace seawar {
       public Vec Position { get; set; } = new Vec(0, 0);
       public double BaseSpeed { get; set; } = 1.0;
 
-      public void Update(Duration delta) {
-         if (isMoving) Move(delta);
+      public void SetNextAction(IAction action) {
+         nextAction = action;
       }
 
-      public void StartMove(Move move) {
+      public IAction GetNextAction() {
+         return nextAction;
+      }
+
+      public bool CanOccupy(Vec pos) {
+         return game.Stage.IsWater(pos);
+      }
+   }
+
+   public interface IAction {
+      bool IsComplete { get; }
+      void Perform(Duration delta);
+   }
+
+   public class MoveAction : IAction {
+      private readonly Actor actor;
+      private readonly Move move;
+      private readonly Vec moveEndPos;
+      private double distance;
+
+      public MoveAction(Actor actor, Move move) {
+         this.actor = actor;
          this.move = move;
-         distance = 0.0;
-         moveEndPos = move.Vector * move.Distance + Position;
-         isMoving = true;
+         moveEndPos = actor.Position + move.Vector * move.Distance;
       }
 
-      private void Move(Duration delta) {
-         var deltaDist = delta.TotalSeconds * move.Speed * BaseSpeed;
+      public bool IsComplete { get; private set; }
+
+      public void Perform(Duration delta) {
+         var deltaDist = delta.TotalSeconds * move.Speed * actor.BaseSpeed;
          distance += deltaDist;
-         if (distance >= move.Vector.Length) {
-            // actor is about to move
-            // check that the destination tile is water
-            if (game.Stage.IsLand(Position + move.Vector)) {
-               StopMove();
-               return;
-            }
-            // check what else might be at this position
-            // move
-            Position += move.Vector;
-            distance -= move.Vector.Length;
+         if (distance < move.Vector.Length) return;
+         // actor is about to move, check new position is OK
+         if (!actor.CanOccupy(actor.Position + move.Vector)) {
+            IsComplete = true;
+            return;
          }
-         if (Position == moveEndPos) StopMove();
-      }
-
-      private void StopMove() {
-         isMoving = false;
+         // move actor
+         actor.Position = actor.Position + move.Vector;
+         if (actor.Position == moveEndPos) {
+            IsComplete = true;
+            return;
+         }
+         distance = distance - move.Vector.Length;
       }
    }
 }

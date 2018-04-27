@@ -17,7 +17,11 @@ namespace seawar {
 
       public void Update(Duration delta) {
          foreach (var actor in actors) {
-            actor.Update(delta);
+            var action =actor.GetNextAction();
+            action.Perform(delta);
+            if (action.IsComplete) {
+               //delete action
+            }
          }
       }
    }
