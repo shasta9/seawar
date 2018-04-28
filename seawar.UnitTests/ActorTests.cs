@@ -6,9 +6,10 @@ namespace seawar.UnitTests {
    public class ActorTests {
       [Test]
       public void Movement() {
-         var a = new Actor(null);
-         var game=new Game(null);
-         a.SetNextAction(new MoveAction(a, new Move(Direction.North, 1, 1.0)));
+         var game = new Game(null);
+         var a = new Actor(game);
+         game.AddActor(a);
+         a.AddAction(new MoveAction(a, new Move(Direction.North, 1, 1.0)));
          Assert.AreEqual(new Vec(0, 0), a.Position);
          game.Update(Duration.FromSeconds(0.5));
          Assert.AreEqual(new Vec(0, 0), a.Position);

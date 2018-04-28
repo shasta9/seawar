@@ -1,10 +1,12 @@
-﻿using NodaTime;
+﻿using System.Collections.Generic;
+using NodaTime;
+using NUnit.Framework.Constraints;
 
 namespace seawar {
    public class Actor {
 
       private readonly Game game;
-      private IAction nextAction;
+      private readonly List<IAction> actions=new List<IAction>();
 
       public Actor(Game game) {
          this.game = game;
@@ -13,16 +15,21 @@ namespace seawar {
       public Vec Position { get; set; } = new Vec(0, 0);
       public double BaseSpeed { get; set; } = 1.0;
 
-      public void SetNextAction(IAction action) {
-         nextAction = action;
+      public void AddAction(IAction action) {
+         actions.Add( action);
       }
 
-      public IAction GetNextAction() {
-         return nextAction;
+      public void RemoveAction(IAction action) {
+         actions.Remove(action);
+      }
+
+      public IEnumerable<IAction> GetActions() {
+         return actions;
       }
 
       public bool CanOccupy(Vec pos) {
-         return game.Stage.IsWater(pos);
+         return true;
+         //return game.Stage.IsWater(pos);
       }
    }
 
