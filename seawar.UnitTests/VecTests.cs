@@ -4,6 +4,12 @@ namespace seawar.UnitTests {
    [TestFixture]
    public class VecTests {
       [Test]
+      public void Creation() {
+         var v = new Vec();
+         Assert.AreEqual(new Vec(0, 0), v);
+      }
+
+      [Test]
       public void BearingAndDistance() {
          var v = new Vec(0, 0);
          Assert.AreEqual(0.0, v.Bearing);

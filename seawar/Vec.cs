@@ -1,12 +1,14 @@
 ﻿using System;
 
 namespace seawar {
-   public struct Vec : IEquatable<Vec> {
+   public class Vec : IEquatable<Vec> {
       public int X { get; }
       public int Y { get; }
 
       public double Bearing { get; }
       public double Length { get; }
+
+      public Vec() : this(0, 0) { }
 
       public Vec(int x, int y) {
          X = x;
@@ -28,9 +30,8 @@ namespace seawar {
 
       public override bool Equals(object obj) {
          if (ReferenceEquals(null, obj)) return false;
-         return obj is Vec && Equals((Vec) obj);
+         return obj is Vec vec && Equals(vec);
       }
-
 
       public bool Equals(Vec other) {
          return X == other.X && Y == other.Y;

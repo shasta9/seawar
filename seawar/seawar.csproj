@@ -50,17 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor.cs" />
-    <Compile Include="Avatar.cs" />
     <Compile Include="Behaviour.cs" />
-    <Compile Include="Destroyer.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="IAction.cs" />
+    <Compile Include="IMoveMechanics.cs" />
     <Compile Include="Move.cs" />
-    <Compile Include="MoveBehaviour.cs" />
+    <Compile Include="MoveAction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stage.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="Vec.cs" />
   </ItemGroup>
   <ItemGroup>
