@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace seawar.UnitTests {
    [TestFixture]
@@ -10,11 +11,11 @@ namespace seawar.UnitTests {
             { -1,  0,  1},
             {  2,  3,  4}
          };
-         var stage = new Map(topo);
-         Assert.AreEqual(-4, stage.GetElevation(new Vec(0, 0)));
-         Assert.AreEqual(-3, stage.GetElevation(new Vec(1, 0)));
-         Assert.AreEqual(-1, stage.GetElevation(new Vec(0, 1)));
-         Assert.AreEqual(4, stage.GetElevation(new Vec(2, 2)));
+         var stage = new Stage(new Map(topo));
+         Assert.AreEqual(-4, stage.GetTile(new Vec(0, 0)).Elevation);
+         Assert.AreEqual(-3, stage.GetTile(new Vec(1, 0)).Elevation);
+         Assert.AreEqual(-1, stage.GetTile(new Vec(0, 1)).Elevation);
+         Assert.AreEqual(4, stage.GetTile(new Vec(2, 2)).Elevation);
       }
 
       [Test]
@@ -23,11 +24,10 @@ namespace seawar.UnitTests {
             { -1,  0},
             {  1,  2}
          };
-         var stage = new Map(topo);
-         Assert.IsTrue(stage.IsWater(new Vec(0, 0)));
-         Assert.IsTrue(stage.IsWater(new Vec(1, 0)));
-         Assert.IsFalse(stage.IsWater(new Vec(0, 1)));
-         Assert.IsFalse(stage.IsWater(new Vec(1, 1)));
+         var stage = new Stage(new Map(topo));
+         Assert.IsTrue(stage.GetTile(new Vec(0, 0)).IsWater);
+         Assert.IsFalse(stage.GetTile(new Vec(0, 1)).IsWater);
+         Assert.IsFalse(stage.GetTile(new Vec(1, 1)).IsWater);
       }
 
       [Test]
@@ -36,11 +36,28 @@ namespace seawar.UnitTests {
             { -1,  0},
             {  1,  2}
          };
-         var stage = new Map(topo);
-         Assert.IsFalse(stage.IsLand(new Vec(0, 0)));
-         Assert.IsFalse(stage.IsLand(new Vec(1, 0)));
-         Assert.IsTrue(stage.IsLand(new Vec(0, 1)));
-         Assert.IsTrue(stage.IsLand(new Vec(1, 1)));
+         var stage = new Stage(new Map(topo));
+         Assert.IsFalse(stage.GetTile(new Vec(0, 0)).IsLand);
+         Assert.IsFalse(stage.GetTile(new Vec(1, 0)).IsLand);
+         Assert.IsTrue(stage.GetTile(new Vec(0, 1)).IsLand);
+         Assert.IsTrue(stage.GetTile(new Vec(1, 1)).IsLand);
+      }
+
+      [Test]
+      public void HasActors() {
+         var topo = new[,] {
+            { -1,  0},
+            {  1,  2}
+         };
+         var stage = new Stage(new Map(topo));
+         var a = new Actor(null, null) { Position = new Vec(0, 0), Name = "A" };
+         var b = new Actor(null, null) { Position = new Vec(0, 0), Name = "B" };
+         stage.AddActor(a);
+         stage.AddActor(b);
+         Assert.AreEqual(2, stage.GetTile(new Vec(0,0 )).Actors.Count());
+         stage.RemoveActor(a);
+         Assert.AreEqual(1, stage.GetTile(new Vec(0, 0)).Actors.Count());
+         Assert.AreSame(b, stage.GetTile(new Vec(0, 0)).Actors.First());
       }
    }
 }

@@ -13,7 +13,7 @@ namespace seawar {
       }
 
       public string Name { get; set; } = string.Empty;
-      public Vec Position { get; private set; } = new Vec();
+      public Vec Position { get; set; } = new Vec();
       public double BaseSpeed { get; set; }
 
       public void AddAction(IAction action) {

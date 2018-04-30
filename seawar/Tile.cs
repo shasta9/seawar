@@ -11,7 +11,7 @@ namespace seawar {
 
       public int Elevation { get; }
       public bool IsWater => Elevation <= 0;
-      public bool Island => !IsWater;
+      public bool IsLand => !IsWater;
       public IEnumerable<Actor> Actors => actors;
    }
 }

@@ -11,9 +11,11 @@ namespace seawar.UnitTests {
          var move = new Move(Direction.North, 1, 1.0);
          var action = new MoveAction(actor, move);
          Assert.AreEqual(new Vec(0, 0), actor.Position);
-         Assert.IsFalse(action.Perform(Duration.FromSeconds(0.5)));
+         action.Perform(Duration.FromSeconds(0.5));
+         Assert.IsFalse(action.IsComplete);
          Assert.AreEqual(new Vec(0, 0), actor.Position);
-         Assert.IsTrue(action.Perform(Duration.FromSeconds(0.5)));
+         action.Perform(Duration.FromSeconds(0.5));
+         Assert.IsTrue(action.IsComplete);
          Assert.AreEqual(new Vec(0, 1), actor.Position);
       }
 
@@ -24,10 +26,18 @@ namespace seawar.UnitTests {
          var move = new Move(Direction.NorthEast, 1, 1.0);
          var action = new MoveAction(actor, move);
          Assert.AreEqual(new Vec(0, 0), actor.Position);
-         Assert.IsFalse(action.Perform(Duration.FromSeconds(0.75)));
+         action.Perform(Duration.FromSeconds(0.75));
+         Assert.IsFalse(action.IsComplete);
          Assert.AreEqual(new Vec(0, 0), actor.Position);
-         Assert.IsTrue(action.Perform(Duration.FromSeconds(0.75)));
+         action.Perform(Duration.FromSeconds(0.75));
+         Assert.IsTrue(action.IsComplete);
          Assert.AreEqual(new Vec(1, 1), actor.Position);
+      }
+   }
+
+   public static class ActorFactory {
+      public static Actor MakeMoveTestActor(Game game) {
+         return new Actor(game,new AlwaysTrueMoveMechanics()){BaseSpeed = 1.0};
       }
    }
 }

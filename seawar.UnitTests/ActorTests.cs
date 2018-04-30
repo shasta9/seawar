@@ -29,14 +29,13 @@ namespace seawar.UnitTests {
             {-1, -1,  0},
             { 0,  0,  0}
          };
-         var stage = new Map(topo);
-         var game = new Game(stage);
+         var stage = new Stage(new Map(topo));
          var actor = new Actor(null, null);
-         game.AddActor(actor);
-         //actor.StartMove(new Move(Direction.North, 3, 1));
-         for (int i = 0; i < 30; i++) {
-            game.Update(Duration.FromMilliseconds(100));
-         }
+         stage.AddActor(actor);
+         ////actor.StartMove(new Move(Direction.North, 3, 1));
+         //for (int i = 0; i < 30; i++) {
+         //   actor.Update(Duration.FromMilliseconds(100));
+         //}
          Assert.AreEqual(new Vec(0, 1), actor.Position);
       }
 

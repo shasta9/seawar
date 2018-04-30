@@ -2,6 +2,7 @@
 
 namespace seawar {
    public interface IAction {
-      bool Perform(Duration delta);
+      bool IsComplete { get; }
+      void Perform(Duration delta);
    }
 }

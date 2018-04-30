@@ -13,21 +13,23 @@ namespace seawar {
          moveEndPos = actor.Position + move.Vector * move.Distance;
       }
 
-      public bool Perform(Duration delta) {
+      public bool IsComplete { get; private set; }
+
+      public void Perform(Duration delta) {
          var deltaDist = delta.TotalSeconds * move.Speed * actor.BaseSpeed;
          distance += deltaDist;
-         if (distance < move.Vector.Length) return false;
+         if (distance < move.Vector.Length) return;
          // actor is about to move, check new position is OK
          if (!actor.CanOccupy(move.Vector)) {
-            return true;
+            return;
          }
          // move actor
          actor.MoveBy(move.Vector);
          if (actor.Position == moveEndPos) {
-            return true;
+            IsComplete = true;
+            return;
          }
          distance = distance - move.Vector.Length;
-         return false;
       }
    }
 }
