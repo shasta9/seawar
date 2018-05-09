@@ -34,10 +34,4 @@ namespace seawar.UnitTests {
          Assert.AreEqual(new Vec(1, 1), actor.Position);
       }
    }
-
-   public static class ActorFactory {
-      public static Actor MakeMoveTestActor(Game game) {
-         return new Actor(game,new AlwaysTrueMoveMechanics()){BaseSpeed = 1.0};
-      }
-   }
 }

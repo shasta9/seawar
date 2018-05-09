@@ -50,7 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor.cs" />
+    <Compile Include="ActorFactory.cs" />
+    <Compile Include="AlwaysTrueMoveMechanics.cs" />
     <Compile Include="Behaviour.cs" />
+    <Compile Include="DestroyerMoveMechanicsTests.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IAction.cs" />
