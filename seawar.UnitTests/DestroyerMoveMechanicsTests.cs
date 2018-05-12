@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace seawar {
+namespace seawar.UnitTests {
    [TestFixture]
    public class DestroyerMoveMechanicsTests {
       [Test]

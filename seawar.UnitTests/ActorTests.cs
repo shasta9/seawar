@@ -1,5 +1,4 @@
-﻿using NodaTime;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace seawar.UnitTests {
    [TestFixture]
@@ -29,7 +28,7 @@ namespace seawar.UnitTests {
             {-1, -1,  0},
             { 0,  0,  0}
          };
-         var stage = new Stage(new Map(topo));
+         var stage = new Stage(topo);
          var actor = new Actor(null, null);
          stage.AddActor(actor);
          ////actor.StartMove(new Move(Direction.North, 3, 1));

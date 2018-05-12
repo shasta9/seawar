@@ -5,8 +5,8 @@ namespace seawar {
    public class Game {
       private readonly Stage stage;
 
-      public Game(Map map) {
-         stage = new Stage(map);
+      public Game(int[,] topo) {
+         stage = new Stage(topo);
       }
 
       public Tile GetTile(Vec pos) {
