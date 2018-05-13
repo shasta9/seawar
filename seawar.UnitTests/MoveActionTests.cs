@@ -6,7 +6,7 @@ namespace seawar.UnitTests {
    public class MoveActionTests {
       [Test]
       public void OthogonalMove() {
-         var mechanics = new AlwaysTrueMoveMechanics();
+         var mechanics = new AlwaysTruePhysics();
          var actor = new Actor(null, mechanics) { BaseSpeed = 1.0 };
          var move = new Move(Direction.North, 1, 1.0);
          var action = new MoveAction(actor, move);
@@ -21,7 +21,7 @@ namespace seawar.UnitTests {
 
       [Test]
       public void DiagonalMove() {
-         var mechanics = new AlwaysTrueMoveMechanics();
+         var mechanics = new AlwaysTruePhysics();
          var actor = new Actor(null, mechanics) { BaseSpeed = 1.0 };
          var move = new Move(Direction.NorthEast, 1, 1.0);
          var action = new MoveAction(actor, move);

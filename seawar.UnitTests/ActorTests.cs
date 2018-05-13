@@ -28,7 +28,7 @@ namespace seawar.UnitTests {
             {-1, -1,  0},
             { 0,  0,  0}
          };
-         var stage = new Stage(topo);
+         var stage = new World(topo);
          var actor = new Actor(null, null);
          stage.AddActor(actor);
          ////actor.StartMove(new Move(Direction.North, 3, 1));

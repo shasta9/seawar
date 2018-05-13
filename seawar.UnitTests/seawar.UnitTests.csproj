@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorTests.cs" />
-    <Compile Include="DestroyerMoveMechanicsTests.cs" />
+    <Compile Include="DestroyerPhysicsTests.cs" />
     <Compile Include="MoveActionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StageTests.cs" />

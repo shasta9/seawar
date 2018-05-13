@@ -51,17 +51,18 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="ActorFactory.cs" />
-    <Compile Include="AlwaysTrueMoveMechanics.cs" />
+    <Compile Include="AlwaysTruePhysics.cs" />
     <Compile Include="Behaviour.cs" />
+    <Compile Include="DestroyerPhysics.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IAction.cs" />
-    <Compile Include="IMoveMechanics.cs" />
+    <Compile Include="IPhysics.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="MoveAction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stage.cs" />
+    <Compile Include="World.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Vec.cs" />
   </ItemGroup>

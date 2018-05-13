@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
+using NodaTime;
 
 namespace seawar {
-   public class Stage {
-      private readonly List<Actor> actors = new List<Actor>();
+   public class World {
       private readonly int[,] topo;
 
-      public Stage(int[,] topo) {
+      public World(int[,] topo) {
          this.topo = topo;
       }
 
-      public IEnumerable<Actor> Actors => actors;
+      public List<Actor> Actors { get; } = new List<Actor>();
 
       public void AddActor(Actor actor) {
-         actors.Add(actor);
+         Actors.Add(actor);
       }
 
       public void RemoveActor(Actor actor) {
-         actors.Remove(actor);
+         Actors.Remove(actor);
       }
 
       private IEnumerable<Actor> GetActorsAt(Vec pos) {
          var actorsAtPos = new List<Actor>();
-         foreach (var actor in actors) {
+         foreach (var actor in Actors) {
             if (actor.Position == pos) actorsAtPos.Add(actor);
          }
          return actorsAtPos;
@@ -29,6 +29,12 @@ namespace seawar {
 
       public Tile GetTile(Vec pos) {
          return new Tile(topo[pos.Y, pos.X], GetActorsAt(pos));
+      }
+
+      public void Update(Duration delta) {
+         foreach (var actor in Actors) {
+            actor.Update(delta);
+         }
       }
    }
 }
