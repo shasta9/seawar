@@ -1,7 +1,7 @@
 ﻿namespace seawar {
    public static class ActorFactory {
-      public static Actor MakeMoveTestActor(Game game) {
-         return new Actor(game,new AlwaysTruePhysics()){BaseSpeed = 1.0};
+      public static Actor MakeMoveTestActor(World world) {
+         return new Actor(world, new TestActorPhysics()) { BaseSpeed = 1.0 };
       }
    }
 }

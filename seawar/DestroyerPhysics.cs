@@ -1,11 +1,22 @@
 ﻿namespace seawar {
    public class DestroyerPhysics : IPhysics {
-      public bool CanOccupy(Tile tile) {
-         return tile.IsWater;
-      }
-
-      public MoveResult Resolve(World world, Vec vec) {
-         throw new System.NotImplementedException();
+      public bool TryMoveTo(Tile pos) {
+         // port?
+         // not water?
+         // aground
+         // for each actor on the tile
+         // merchant ship?
+         //  collision
+         // submarine?
+         // surfaced?
+         // resolve collision
+         // periscope depth?
+         // collision
+         // submerged?
+         // collision
+         // torpedo?
+         // mine?
+         return true;
       }
    }
 }

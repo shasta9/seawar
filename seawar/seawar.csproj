@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="NodaTime, Version=2.2.5.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
       <HintPath>..\packages\NodaTime.2.2.5\lib\net45\NodaTime.dll</HintPath>
     </Reference>
@@ -51,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="ActorFactory.cs" />
-    <Compile Include="AlwaysTruePhysics.cs" />
+    <Compile Include="TestActorPhysics.cs" />
     <Compile Include="Behaviour.cs" />
     <Compile Include="DestroyerPhysics.cs" />
     <Compile Include="Direction.cs" />

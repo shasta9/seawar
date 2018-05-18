@@ -39,12 +39,11 @@ namespace seawar {
          }
       }
 
-      public void MoveBy(Vec vec) {
-         Position = Position + vec;
-      }
-
-      public MoveResult TryMoveBy(Vec vec) {
-         return physics.Resolve(world, vec);
+      public bool MoveBy(Vec vec) {
+         var tile = world.GetTile(Position + vec);
+         if (!physics.TryMoveTo(tile)) return false;
+         Position += vec;
+         return true;
       }
    }
 }

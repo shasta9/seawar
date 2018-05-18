@@ -19,11 +19,9 @@ namespace seawar {
          var deltaDist = delta.TotalSeconds * move.Speed * actor.BaseSpeed;
          distance += deltaDist;
          if (distance < move.Vector.Length) return;
-         // actor is about to move, get move result
-         MoveResult result = actor.TryMoveBy(move.Vector);
-         if (result.Success) {
-            // move actor
-            actor.MoveBy(move.Vector);
+         // actor is ready to move
+         if (actor.MoveBy(move.Vector)) {
+            // actor has moved
             if (actor.Position == moveEndPos) {
                IsComplete = true;
                return;
@@ -31,7 +29,7 @@ namespace seawar {
             distance = distance - move.Vector.Length;
             return;
          }
-         // stop the move
+         // move failed, set IsComplete to stop further movement
          IsComplete = true;
       }
    }

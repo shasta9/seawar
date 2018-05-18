@@ -4,12 +4,11 @@ using NodaTime;
 namespace seawar {
    public class World {
       private readonly int[,] topo;
+      private List<Actor> Actors { get; } = new List<Actor>();
 
       public World(int[,] topo) {
          this.topo = topo;
       }
-
-      public List<Actor> Actors { get; } = new List<Actor>();
 
       public void AddActor(Actor actor) {
          Actors.Add(actor);
@@ -17,6 +16,21 @@ namespace seawar {
 
       public void RemoveActor(Actor actor) {
          Actors.Remove(actor);
+      }
+
+      public Tile GetTile(Vec pos) {
+         return new Tile(topo[pos.Y, pos.X], GetActorsAt(pos));
+      }
+
+      public void Update(Duration delta) {
+         var expiredActors = new List<Actor>();
+         foreach (var actor in Actors) {
+            actor.Update(delta);
+            if (actor.HasExpired) expiredActors.Add(actor);
+         }
+         foreach (var actor in expiredActors) {
+            Actors.Remove(actor);
+         }
       }
 
       private IEnumerable<Actor> GetActorsAt(Vec pos) {
@@ -27,14 +41,8 @@ namespace seawar {
          return actorsAtPos;
       }
 
-      public Tile GetTile(Vec pos) {
-         return new Tile(topo[pos.Y, pos.X], GetActorsAt(pos));
-      }
-
-      public void Update(Duration delta) {
-         foreach (var actor in Actors) {
-            actor.Update(delta);
-         }
+      public PlayerMessage GetMessage() {
+         throw new System.NotImplementedException();
       }
    }
 }
