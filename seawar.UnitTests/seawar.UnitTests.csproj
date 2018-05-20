@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionSpy.cs" />
     <Compile Include="ActorTests.cs" />
     <Compile Include="DestroyerPhysicsTests.cs" />
+    <Compile Include="MoveableStub.cs" />
     <Compile Include="MoveActionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StageTests.cs" />

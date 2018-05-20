@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NodaTime;
+using NUnit.Framework;
 
 namespace seawar.UnitTests {
    [TestFixture]
@@ -12,35 +13,17 @@ namespace seawar.UnitTests {
       }
 
       [Test]
-      public void ChangesDepth() {
-         Assert.Fail("Not implemented yet");
-      }
-
-      [Test]
-      public void StopsIfTooShallow() {
-         Assert.Fail("Not implemented yet");
-      }
-
-      [Test]
-      public void StopsAtShore() {
-         var topo = new[,] {
-            {-1, -1,  0},
-            {-1, -1,  0},
-            { 0,  0,  0}
-         };
-         var stage = new World(topo);
-         var actor = new Actor(null, null);
-         stage.AddActor(actor);
-         ////actor.StartMove(new Move(Direction.North, 3, 1));
-         //for (int i = 0; i < 30; i++) {
-         //   actor.Update(Duration.FromMilliseconds(100));
-         //}
-         Assert.AreEqual(new Vec(0, 1), actor.Position);
-      }
-
-      [Test]
-      public void CollidesWithActor() {
-         Assert.Fail("Not implemented yet");
+      public void Update() {
+         var spy = new ActionSpy();
+         var a = new Actor(null,null);
+         a.AddAction(spy);
+         Assert.AreEqual(0,spy.PerformedCount);
+         Assert.IsFalse(spy.IsComplete);
+         a.Update(Duration.Epsilon);
+         Assert.AreEqual(1, spy.PerformedCount);
+         Assert.IsTrue(spy.IsComplete);
+         a.Update(Duration.Epsilon);
+         Assert.AreEqual(1, spy.PerformedCount);
       }
    }
 }

@@ -7,12 +7,13 @@ namespace seawar.UnitTests {
       [Test]
       public void CanMoveToEmptySea() {
          var physics = new DestroyerPhysics();
-         Assert.IsTrue(physics.TryMoveTo(new Tile(0, new List<Actor>())));
+         Assert.IsTrue(physics.CanMoveTo(new Tile(0, new List<Actor>())));
       }
+
       [Test]
       public void CannotMoveToLand() {
          var physics = new DestroyerPhysics();
-         Assert.IsFalse(physics.TryMoveTo(new Tile(1, new List<Actor>())));
+         Assert.IsFalse(physics.CanMoveTo(new Tile(1, new List<Actor>())));
       }
    }
 }

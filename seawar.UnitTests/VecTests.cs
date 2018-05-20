@@ -5,7 +5,7 @@ namespace seawar.UnitTests {
    public class VecTests {
       [Test]
       public void Creation() {
-         var v = new Vec();
+         var v = Vec.Zero;
          Assert.AreEqual(new Vec(0, 0), v);
       }
 

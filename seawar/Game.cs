@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
-using Microsoft.Build.Tasks;
 using NodaTime;
 
 namespace seawar {
    public class Game {
       private readonly World world;
-      private List<Player> players;
+      private readonly List<Player> players;
       private readonly CommandDispatcher cmdDispatcher;
 
       public Game(World world) {
@@ -48,7 +46,6 @@ namespace seawar {
 
    public class Player {
       public void SendMessage(PlayerMessage msg) {
-
       }
 
       public PlayerCommand GetCommand() {

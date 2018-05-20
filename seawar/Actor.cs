@@ -2,7 +2,7 @@
 using NodaTime;
 
 namespace seawar {
-   public class Actor {
+   public class Actor : IMoveable {
 
       private readonly List<IAction> actions = new List<IAction>();
       private readonly World world;
@@ -14,7 +14,7 @@ namespace seawar {
       }
 
       public string Name { get; set; } = string.Empty;
-      public Vec Position { get; set; } = new Vec();
+      public Vec Position { get; set; } = Vec.Zero;
       public double BaseSpeed { get; set; }
       public bool HasExpired { get; set; }
 
@@ -39,11 +39,14 @@ namespace seawar {
          }
       }
 
-      public bool MoveBy(Vec vec) {
-         var tile = world.GetTile(Position + vec);
-         if (!physics.TryMoveTo(tile)) return false;
-         Position += vec;
-         return true;
+      public bool CanMoveTo(Vec pos) {
+         var tile = world.GetTile(pos);
+         return physics.CanMoveTo(tile);
+      }
+
+      public Damage Collide(Vec pos) {
+         var tile = world.GetTile(pos);
+         return physics.Collide(tile);
       }
    }
 }

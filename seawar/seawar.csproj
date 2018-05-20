@@ -52,7 +52,9 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="ActorFactory.cs" />
-    <Compile Include="TestActorPhysics.cs" />
+    <Compile Include="Damage.cs" />
+    <Compile Include="IMoveable.cs" />
+    <Compile Include="MoveAnywherePhysics.cs" />
     <Compile Include="Behaviour.cs" />
     <Compile Include="DestroyerPhysics.cs" />
     <Compile Include="Direction.cs" />

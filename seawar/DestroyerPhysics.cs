@@ -1,9 +1,12 @@
 ﻿namespace seawar {
    public class DestroyerPhysics : IPhysics {
-      public bool TryMoveTo(Tile pos) {
-         // port?
+      public bool CanMoveTo(Tile pos) {
          // not water?
-         // aground
+         if (pos.IsLand) {
+            // aground
+            return false;
+         }
+         // port?
          // for each actor on the tile
          // merchant ship?
          //  collision
@@ -17,6 +20,10 @@
          // torpedo?
          // mine?
          return true;
+      }
+
+      public Damage Collide(Tile pos) {
+         return new Damage();
       }
    }
 }

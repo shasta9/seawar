@@ -1,5 +1,6 @@
 ﻿namespace seawar {
    public interface IPhysics {
-      bool TryMoveTo(Tile pos);
+      bool CanMoveTo(Tile pos);
+      Damage Collide(Tile pos);
    }
 }
