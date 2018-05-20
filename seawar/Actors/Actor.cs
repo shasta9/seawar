@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
 using NodaTime;
+using seawar.Actions;
+using seawar.Game;
+using seawar.Physics;
+using seawar.Vectors;
 
-namespace seawar {
+namespace seawar.Actors {
    public class Actor : IMoveable {
 
       private readonly List<IAction> actions = new List<IAction>();

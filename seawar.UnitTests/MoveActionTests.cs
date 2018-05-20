@@ -1,5 +1,8 @@
 ﻿using NodaTime;
 using NUnit.Framework;
+using seawar.Actions;
+using seawar.Actors;
+using seawar.Vectors;
 
 namespace seawar.UnitTests {
    [TestFixture]

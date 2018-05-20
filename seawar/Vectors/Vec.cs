@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace seawar {
+namespace seawar.Vectors {
    public class Vec : IEquatable<Vec> {
       public static Vec Zero => new Vec(0, 0);
       public static Vec Unit => new Vec(1, 1);

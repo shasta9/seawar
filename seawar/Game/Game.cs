@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using NodaTime;
+using seawar.Messages;
+using seawar.PlayerCommands;
 
-namespace seawar {
+namespace seawar.Game {
    public class Game {
       private readonly World world;
       private readonly List<Player> players;
@@ -26,7 +28,7 @@ namespace seawar {
          // update world
          world.Update(delta);
 
-         // send messages
+         // send world messages to players
          PlayerMessage msg;
          while ((msg = world.GetMessage()) != null) {
             foreach (var player in players) {
@@ -36,9 +38,7 @@ namespace seawar {
       }
    }
 
-   public class PlayerMessage { }
-
-   internal class CommandDispatcher {
+   public class CommandDispatcher {
       public void Dispatch(PlayerCommand cmd) {
          throw new System.NotImplementedException();
       }
@@ -46,12 +46,11 @@ namespace seawar {
 
    public class Player {
       public void SendMessage(PlayerMessage msg) {
+         throw new System.NotImplementedException();
       }
 
       public PlayerCommand GetCommand() {
          throw new System.NotImplementedException();
       }
    }
-
-   public class PlayerCommand { }
 }

@@ -1,4 +1,6 @@
-﻿namespace seawar
+﻿using seawar.Vectors;
+
+namespace seawar.Actions
 {
    public class Move {
       public Move(Vec vector, int distance, double speed) {

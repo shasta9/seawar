@@ -50,28 +50,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actor.cs" />
-    <Compile Include="ActorFactory.cs" />
-    <Compile Include="Damage.cs" />
-    <Compile Include="IMoveable.cs" />
-    <Compile Include="MoveAnywherePhysics.cs" />
-    <Compile Include="Behaviour.cs" />
-    <Compile Include="DestroyerPhysics.cs" />
-    <Compile Include="Direction.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="IAction.cs" />
-    <Compile Include="IPhysics.cs" />
-    <Compile Include="Move.cs" />
-    <Compile Include="MoveAction.cs" />
+    <Compile Include="Actors\Actor.cs" />
+    <Compile Include="Actors\ActorFactory.cs" />
+    <Compile Include="PlayerCommands\CommandTypes.cs" />
+    <Compile Include="Actors\Damage.cs" />
+    <Compile Include="Actors\IMoveable.cs" />
+    <Compile Include="Physics\MoveAnywherePhysics.cs" />
+    <Compile Include="Physics\DestroyerPhysics.cs" />
+    <Compile Include="Vectors\Direction.cs" />
+    <Compile Include="Game\Game.cs" />
+    <Compile Include="Actions\IAction.cs" />
+    <Compile Include="Physics\IPhysics.cs" />
+    <Compile Include="Actions\Move.cs" />
+    <Compile Include="Actions\MoveAction.cs" />
+    <Compile Include="PlayerCommands\MoveCommand.cs" />
+    <Compile Include="PlayerCommands\PlayerCommand.cs" />
+    <Compile Include="Messages\PlayerMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="World.cs" />
-    <Compile Include="Tile.cs" />
-    <Compile Include="Vec.cs" />
+    <Compile Include="Game\World.cs" />
+    <Compile Include="Game\Tile.cs" />
+    <Compile Include="Vectors\Vec.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,4 +1,5 @@
 ﻿using NodaTime;
+using seawar.Actions;
 
 namespace seawar.UnitTests {
    public class ActionSpy : IAction {

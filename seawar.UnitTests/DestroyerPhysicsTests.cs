@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
+using seawar.Actors;
+using seawar.Game;
+using seawar.Physics;
 
 namespace seawar.UnitTests {
    [TestFixture]

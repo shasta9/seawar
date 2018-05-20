@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using NodaTime;
+using seawar.Actors;
+using seawar.Messages;
+using seawar.Vectors;
 
-namespace seawar {
+namespace seawar.Game {
    public class World {
       private readonly int[,] topo;
       private List<Actor> Actors { get; } = new List<Actor>();

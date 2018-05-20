@@ -1,9 +1,12 @@
-﻿namespace seawar.UnitTests {
+﻿using seawar.Actors;
+using seawar.Vectors;
+
+namespace seawar.UnitTests {
    public class MoveableStub : IMoveable {
       public Vec Position { get; set; }
       public double BaseSpeed { get; set; }
  
-      public bool CanMoveTo(Vec vec) {
+      public bool CanMoveTo(Vec pos) {
          return true;
       }
 

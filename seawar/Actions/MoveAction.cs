@@ -1,6 +1,8 @@
 ﻿using NodaTime;
+using seawar.Actors;
+using seawar.Vectors;
 
-namespace seawar {
+namespace seawar.Actions {
    public class MoveAction : IAction {
       private readonly IMoveable moveable;
       private readonly Move move;

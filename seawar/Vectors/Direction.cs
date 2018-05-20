@@ -1,4 +1,4 @@
-﻿namespace seawar {
+﻿namespace seawar.Vectors {
    public static class Direction {
       public static readonly Vec North = new Vec(0, 1);
       public static readonly Vec NorthEast = new Vec(1, 1);

@@ -1,5 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using seawar.Actors;
+using seawar.Game;
+using seawar.Vectors;
 
 namespace seawar.UnitTests {
    [TestFixture]
