@@ -1,4 +1,7 @@
-﻿using seawar.Actors;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using seawar.Actions;
+using seawar.Actors;
 using seawar.Game;
 
 namespace seawar.Physics {
@@ -29,5 +32,10 @@ namespace seawar.Physics {
       public Damage Collide(Tile pos) {
          return new Damage();
       }
+   }
+
+   public class MoveResult {
+      public bool Success { get; set; }
+      public List<Damage> Consequences { get; set; }
    }
 }

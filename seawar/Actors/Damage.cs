@@ -1,3 +1,16 @@
 ﻿namespace seawar.Actors {
-   public class Damage { }
+
+   public enum DamageType {
+      Collision,
+      Shell,
+      Torpedo,
+      Mine
+   }
+
+
+   public class Damage {
+      public DamageType Type { get; set; }
+      public Actor Target { get; set; }
+      public int Severity { get; set; }
+   }
 }
