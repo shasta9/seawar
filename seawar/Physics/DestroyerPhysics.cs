@@ -1,18 +1,23 @@
 ﻿using System.Collections.Generic;
-using NUnit.Framework;
-using seawar.Actions;
 using seawar.Actors;
 using seawar.Game;
 
 namespace seawar.Physics {
    public class DestroyerPhysics : IPhysics {
-      public bool CanMoveTo(Tile pos) {
-         // not water?
-         if (pos.IsLand) return false;
+      public MoveResult TryMoveTo(Tile pos) {
+         // empty sea?
+         if (pos.IsWater && pos.Actors.Count == 0) return MoveResult.Success();
          // port?
-         if (pos.IsDestroyerPort) return true;
-         // for each actor on the tile
+         if (pos.IsDestroyerPort) return MoveResult.InPort();
+         // aground?
+         if (pos.IsLand) {
+            var result = new MoveResult {
+               Result = MoveResults.Aground,
 
+            }
+         }
+         // for each actor on the tile
+         
          // merchant ship?
          //  collision
          // submarine?
@@ -24,7 +29,7 @@ namespace seawar.Physics {
          //   collision
          // torpedo?
          // mine?
-         return true;
+         return MoveResult.Success();
       }
 
 
@@ -34,8 +39,18 @@ namespace seawar.Physics {
       }
    }
 
+   public enum MoveResults {
+      Ok,
+      InPort,
+      Aground,
+      Collision
+   }
+
    public class MoveResult {
-      public bool Success { get; set; }
+      public MoveResults Result { get; set; }
       public List<Damage> Consequences { get; set; }
+
+      public static MoveResult Success() => new MoveResult { Result = MoveResults.Ok, Consequences = null };
+      public static MoveResult InPort() => new MoveResult { Result = MoveResults.InPort, Consequences = null };
    }
 }

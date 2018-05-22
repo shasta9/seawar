@@ -3,8 +3,8 @@ using seawar.Game;
 
 namespace seawar.Physics {
    public class MoveAnywherePhysics : IPhysics {
-      public bool CanMoveTo(Tile pos) {
-         return true;
+      public MoveResult TryMoveTo(Tile pos) {
+         return MoveResult.Success();
       }
 
       public Damage Collide(Tile pos) {

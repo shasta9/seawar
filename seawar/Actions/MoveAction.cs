@@ -1,44 +1,90 @@
-﻿using NodaTime;
+﻿using System;
+using NodaTime;
 using seawar.Actors;
+using seawar.Physics;
 using seawar.Vectors;
 
 namespace seawar.Actions {
    public class MoveAction : IAction {
-      private readonly IMoveable moveable;
+      private readonly Actor actor;
       private readonly Move move;
       private readonly Vec moveEndPos;
       private double distance;
 
-      public MoveAction(IMoveable moveable, Move move) {
-         this.moveable = moveable;
+      public MoveAction(Actor actor, Move move) {
+         this.actor = actor;
          this.move = move;
-         moveEndPos = moveable.Position + move.Vector * move.Distance;
+         moveEndPos = actor.Position + move.Vector * move.Distance;
       }
 
       public bool IsComplete { get; private set; }
 
       public void Perform(Duration delta) {
-         var deltaDist = delta.TotalSeconds * move.Speed * moveable.BaseSpeed;
+         // how far have we moved sine the last update
+         var deltaDist = delta.TotalSeconds * move.Speed * actor.BaseSpeed;
+         // accumulate distance
          distance += deltaDist;
          if (distance < move.Vector.Length) return;
-         // moveable is ready to move
-         if (moveable.CanMoveTo(moveable.Position + move.Vector)) {
-            // moveable has moved
-            moveable.Position += move.Vector;
-            // check if move is complete
-            if (moveable.Position == moveEndPos) {
+         // actor has built up enough distance to move to a new tile
+         var result = actor.TryMoveTo(actor.Position + move.Vector);
+         switch (result.Result) {
+            case MoveResults.Ok:
+               // actor can move and nothing else happens
+               actor.Position += move.Vector;
+               // check if move is complete
+               if (actor.Position == moveEndPos) {
+                  IsComplete = true;
+                  return;
+               }
+               // decrement accumulated distance
+               distance = distance - move.Vector.Length;
+               break;
+            case MoveResults.InPort:
+               // actor is in port
+               actor.Position += move.Vector;
                IsComplete = true;
-               return;
-            }
-            // decrement distance
-            distance = distance - move.Vector.Length;
+               actor.AddAction(InPortAction.For(actor));
+               break;
+            case MoveResults.Aground:
+               actor.Aground(move.Speed);
+               IsComplete = true;
+               break;
+            case MoveResults.Collision:
+               actor.Collide(result, move.Speed);
+               IsComplete = true;
+               break;
+            default:
+               throw new ArgumentOutOfRangeException();
          }
-         else {
-            // move failed, resolve damage etc
-            var dmg = moveable.Collide(moveable.Position + move.Vector);
-            // set IsComplete to stop further movement
-            IsComplete = true;
+      }
+   }
+
+   public abstract class InPortAction : IAction {
+
+      public bool IsComplete { get; }
+
+      public abstract void Perform(Duration delta);
+
+      public static InPortAction For(Actor actor) {
+         switch (actor) {
+            case Destroyer destroyer:
+               return new DestroyerInPortAction(destroyer);
+            default:
+               throw new ArgumentOutOfRangeException();
          }
+      }
+   }
+
+   public class DestroyerInPortAction : InPortAction {
+      private readonly Destroyer destroyer;
+
+      public DestroyerInPortAction(Destroyer destroyer) {
+         this.destroyer = destroyer;
+
+      }
+
+      public override void Perform(Duration delta) {
+         throw new NotImplementedException();
       }
    }
 }

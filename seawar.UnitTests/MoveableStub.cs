@@ -1,4 +1,5 @@
 ﻿using seawar.Actors;
+using seawar.Physics;
 using seawar.Vectors;
 
 namespace seawar.UnitTests {
@@ -6,8 +7,8 @@ namespace seawar.UnitTests {
       public Vec Position { get; set; }
       public double BaseSpeed { get; set; }
  
-      public bool CanMoveTo(Vec pos) {
-         return true;
+      public MoveResult TryMoveTo(Vec pos) {
+         return MoveResult.Success();
       }
 
       public Damage Collide(Vec pos) {

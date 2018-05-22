@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Actors\Actor.cs" />
     <Compile Include="Actors\ActorFactory.cs" />
+    <Compile Include="Actors\Destroyer.cs" />
     <Compile Include="PlayerCommands\CommandTypes.cs" />
     <Compile Include="Actors\Damage.cs" />
     <Compile Include="Actors\IMoveable.cs" />

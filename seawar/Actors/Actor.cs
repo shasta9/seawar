@@ -6,6 +6,7 @@ using seawar.Physics;
 using seawar.Vectors;
 
 namespace seawar.Actors {
+   
    public class Actor : IMoveable {
 
       private readonly List<IAction> actions = new List<IAction>();
@@ -43,14 +44,16 @@ namespace seawar.Actors {
          }
       }
 
-      public bool CanMoveTo(Vec pos) {
+      public MoveResult TryMoveTo(Vec pos) {
          var tile = world.GetTile(pos);
-         return physics.CanMoveTo(tile);
+         return physics.TryMoveTo(tile);
       }
 
-      public Damage Collide(Vec pos) {
-         var tile = world.GetTile(pos);
-         return physics.Collide(tile);
+      public void Aground(double speed) {
+         throw new System.NotImplementedException();
+      }
+
+      public void Collide(MoveResult result, double speed) {
       }
    }
 }

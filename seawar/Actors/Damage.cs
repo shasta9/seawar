@@ -11,6 +11,6 @@
    public class Damage {
       public DamageType Type { get; set; }
       public Actor Target { get; set; }
-      public int Severity { get; set; }
+      public int Amount { get; set; }
    }
 }

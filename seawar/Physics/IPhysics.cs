@@ -3,7 +3,7 @@ using seawar.Game;
 
 namespace seawar.Physics {
    public interface IPhysics {
-      bool CanMoveTo(Tile pos);
+      MoveResult TryMoveTo(Tile pos);
       Damage Collide(Tile pos);
    }
 }
