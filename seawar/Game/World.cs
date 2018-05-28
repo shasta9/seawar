@@ -48,4 +48,13 @@ namespace seawar.Game {
          throw new System.NotImplementedException();
       }
    }
+
+   public class Actor {
+      public bool HasExpired { get; set; }
+      public Vec Position { get; set; }
+
+      public void Update(Duration delta) {
+         throw new System.NotImplementedException();
+      }
+   }
 }

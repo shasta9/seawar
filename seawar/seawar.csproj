@@ -50,20 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actors\Actor.cs" />
-    <Compile Include="Actors\ActorFactory.cs" />
-    <Compile Include="Actors\Destroyer.cs" />
+    <Compile Include="Actors\DestroyerEx.cs" />
     <Compile Include="PlayerCommands\CommandTypes.cs" />
-    <Compile Include="Actors\Damage.cs" />
-    <Compile Include="Actors\IMoveable.cs" />
-    <Compile Include="Physics\MoveAnywherePhysics.cs" />
-    <Compile Include="Physics\DestroyerPhysics.cs" />
     <Compile Include="Vectors\Direction.cs" />
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Actions\IAction.cs" />
-    <Compile Include="Physics\IPhysics.cs" />
     <Compile Include="Actions\Move.cs" />
-    <Compile Include="Actions\MoveAction.cs" />
     <Compile Include="PlayerCommands\MoveCommand.cs" />
     <Compile Include="PlayerCommands\PlayerCommand.cs" />
     <Compile Include="Messages\PlayerMessage.cs" />
@@ -76,7 +67,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Physics\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
