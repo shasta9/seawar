@@ -24,13 +24,15 @@ namespace seawar.UnitTests {
       }
 
       [Test]
-      public void OthogonalMove() {
+      public void OrthogonalMove() {
          var move = new Move(Direction.North, 1, 1.0);
          dest.StartMove(move);
          Assert.AreEqual(new Vec(0, 0), dest.Position);
          dest.Update(Duration.FromSeconds(0.5));
          Assert.AreEqual(new Vec(0, 0), dest.Position);
          dest.Update(Duration.FromSeconds(0.5));
+         Assert.AreEqual(new Vec(0, 1), dest.Position);
+         dest.Update(Duration.FromSeconds(1.0));
          Assert.AreEqual(new Vec(0, 1), dest.Position);
       }
 
@@ -42,6 +44,8 @@ namespace seawar.UnitTests {
          dest.Update(Duration.FromSeconds(0.75));
          Assert.AreEqual(new Vec(0, 0), dest.Position);
          dest.Update(Duration.FromSeconds(0.75));
+         Assert.AreEqual(new Vec(1, 1), dest.Position);
+         dest.Update(Duration.FromSeconds(2.0));
          Assert.AreEqual(new Vec(1, 1), dest.Position);
       }
    }
