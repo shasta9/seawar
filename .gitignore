@@ -1,0 +1,12 @@
+# Compiled binaries
+/mapgen
+/seawar
+/server
+/client
+
+# Go build cache
+*.test
+*.out
+
+# macOS
+.DS_Store
