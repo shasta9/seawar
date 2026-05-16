@@ -22,12 +22,12 @@ const (
 
 func main() {
 	var (
-		seed      = flag.Int64("seed", 0, "RNG seed (0 = random, printed to stderr for reproducibility)")
-		name      = flag.String("name", "Unnamed", "Map name")
-		desc      = flag.String("desc", "", "Map description")
+		seed          = flag.Int64("seed", 0, "RNG seed (0 = random, printed to stderr for reproducibility)")
+		name          = flag.String("name", "Unnamed", "Map name")
+		desc          = flag.String("desc", "", "Map description")
 		islandDensity = flag.Float64("island-density", 0.35, "Controls island density: probability of a cell being land in the initial noise pass before smoothing. Higher values produce more land mass. Due to cellular automata smoothing, actual land coverage will be significantly lower than this value (e.g. 0.35 typically yields ~10-15% land coverage).")
-		merchants = flag.Int("merchants", 10, "Number of merchant ships")
-		outPath   = flag.String("out", "", "Output file path (default: stdout)")
+		merchants     = flag.Int("merchants", 10, "Number of merchant ships")
+		outPath       = flag.String("out", "", "Output file path (default: stdout)")
 	)
 	flag.Parse()
 
