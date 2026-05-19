@@ -26,7 +26,6 @@ func main() {
 		name          = flag.String("name", "Unnamed", "Map name")
 		desc          = flag.String("desc", "", "Map description")
 		islandDensity = flag.Float64("island-density", 0.35, "Controls island density: probability of a cell being land in the initial noise pass before smoothing. Higher values produce more land mass. Due to cellular automata smoothing, actual land coverage will be significantly lower than this value (e.g. 0.35 typically yields ~10-15% land coverage).")
-		merchants     = flag.Int("merchants", 10, "Number of merchant ships")
 		outPath       = flag.String("out", "", "Output file path (default: stdout)")
 	)
 	flag.Parse()
@@ -43,7 +42,7 @@ func main() {
 		// while remaining reproducible from the original seed.
 		rng := rand.New(rand.NewSource(actualSeed + int64(attempt)))
 
-		m, err := generate(rng, *name, *desc, *islandDensity, *merchants, actualSeed)
+		m, err := generate(rng, *name, *desc, *islandDensity, actualSeed)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "attempt %d: generation failed: %v\n", attempt+1, err)
 			continue
@@ -84,8 +83,8 @@ func main() {
 	fmt.Fprintf(os.Stderr, "map written to %s\n", *outPath)
 }
 
-func generate(rng *rand.Rand, name, desc string, landRatio float64, merchantCount int, seed int64) (*mapdata.GameMap, error) {
-	cells := mapgen.GenerateTerrain(rng, mapWidth, mapHeight, landRatio)
+func generate(rng *rand.Rand, name, desc string, islandDensity float64, seed int64) (*mapdata.GameMap, error) {
+	cells := mapgen.GenerateTerrain(rng, mapWidth, mapHeight, islandDensity)
 
 	m := &mapdata.GameMap{
 		Width:  mapWidth,
@@ -104,18 +103,6 @@ func generate(rng *rand.Rand, name, desc string, landRatio float64, merchantCoun
 		return nil, fmt.Errorf("ports: %w", err)
 	}
 	m.Ports = ports
-
-	ships, err := mapgen.PlaceMerchants(rng, m, merchantCount)
-	if err != nil {
-		return nil, fmt.Errorf("merchants: %w", err)
-	}
-	m.Merchants = ships
-
-	start, err := mapgen.PlaceStartPositions(rng, m)
-	if err != nil {
-		return nil, fmt.Errorf("start positions: %w", err)
-	}
-	m.Start = start
 
 	return m, nil
 }

@@ -29,17 +29,6 @@ type Port struct {
 	Owner PortOwner `json:"owner"`
 }
 
-// MerchantShip has only a position (stationary by design).
-type MerchantShip struct {
-	Pos Position `json:"pos"`
-}
-
-// StartPositions holds the initial spawn point for each player role.
-type StartPositions struct {
-	Sub      Position `json:"sub"`
-	Destroyer Position `json:"destroyer"`
-}
-
 // MapMeta carries human-readable provenance information.
 type MapMeta struct {
 	Name        string `json:"name"`
@@ -52,13 +41,11 @@ type MapMeta struct {
 // Cells are stored as a [Height][Width] grid; Cells[Y][X] is the cell at column X, row Y.
 // The JSON representation encodes each row as a string of '0' (sea) and '1' (land) characters.
 type GameMap struct {
-	Width     int            `json:"-"`
-	Height    int            `json:"-"`
-	Cells     [][]CellType   `json:"-"`
-	Ports     []Port         `json:"ports"`
-	Merchants []MerchantShip `json:"merchants"`
-	Start     StartPositions `json:"start"`
-	Meta      MapMeta        `json:"meta"`
+	Width  int          `json:"-"`
+	Height int          `json:"-"`
+	Cells  [][]CellType `json:"-"`
+	Ports  []Port       `json:"ports"`
+	Meta   MapMeta      `json:"meta"`
 }
 
 // InBounds reports whether pos lies within the map grid.

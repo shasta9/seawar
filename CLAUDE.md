@@ -124,6 +124,17 @@ The game is **real-time with action-locking**, not turn-based:
   the same grid cell as surface entities without being directly visible. Detection
   likely depends on depth differential and destroyer equipment.
 
+### Map file contents (geography only)
+- Land/sea cell layout
+- Port locations (4 total: 2 per side)
+
+### Server initialises at game start (not in map file)
+- Submarine starting position (random sea cell)
+- Destroyer starting position (random sea cell)
+- Merchant ship positions (random sea cells)
+- Constraints for random placement TBD (e.g. minimum separation
+  between starting positions, not adjacent to enemy ports)
+
 ## Movement Model
 - **Command syntax:** `M` prompts for `Bearing, Distance, Speed?` e.g. `135,4,18`
   Shorthand: `M,135,4,18` enters everything on one line.
@@ -175,10 +186,10 @@ are made:
   - Retries up to 10 times with derived seeds if placement or validation fails.
 - **Generation pipeline:** random noise seed → 5× cellular automata smoothing →
   remove tiny islands → ensure single connected sea region (carve corridors if
-  needed) → place ports → place merchants → place starting positions → validate.
-- **Validation:** `pkg/mapdata/validate.go` runs named checks (port on sea, coastal,
-  reachable, separated; start positions on sea and separated; merchants on sea).
-  Used by both the generator and the server at map load time.
+  needed) → place ports → validate.
+- **Validation:** `pkg/mapdata/validate.go` runs named checks (ports on sea, coastal,
+  reachable from each other, minimum separation). Used by both the generator and the
+  server at map load time.
 - **Balance implications:** Different maps fundamentally change game balance. Choke
   points favour the destroyer (forcing the sub into predictable paths). Open maps
   favour the submarine (more hiding room). This is a feature, not a bug.

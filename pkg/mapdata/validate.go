@@ -88,44 +88,6 @@ func Validate(m *GameMap) ValidationResult {
 		}
 	}
 
-	// --- Starting positions ---
-	for _, sp := range []struct {
-		name string
-		pos  Position
-	}{
-		{"sub", m.Start.Sub},
-		{"destroyer", m.Start.Destroyer},
-	} {
-		if !m.InBounds(sp.pos) {
-			result.addError("start-bounds",
-				fmt.Sprintf("%s start %v is out of bounds", sp.name, sp.pos))
-			continue
-		}
-		if m.Cells[sp.pos.Y][sp.pos.X] != Sea {
-			result.addError("start-on-sea",
-				fmt.Sprintf("%s start %v is on land", sp.name, sp.pos))
-		}
-	}
-
-	const minStartSep = 20
-	if d := chebyshevDist(m.Start.Sub, m.Start.Destroyer); d < minStartSep {
-		result.addError("start-separation",
-			fmt.Sprintf("starting positions are only %d cells apart (minimum %d)", d, minStartSep))
-	}
-
-	// --- Merchant ships ---
-	for i, ms := range m.Merchants {
-		if !m.InBounds(ms.Pos) {
-			result.addError("merchant-bounds",
-				fmt.Sprintf("merchant %d at %v is out of bounds", i, ms.Pos))
-			continue
-		}
-		if m.Cells[ms.Pos.Y][ms.Pos.X] != Sea {
-			result.addError("merchant-on-sea",
-				fmt.Sprintf("merchant %d at %v is on land", i, ms.Pos))
-		}
-	}
-
 	// --- Advisory warnings ---
 	landCount := 0
 	total := m.Width * m.Height

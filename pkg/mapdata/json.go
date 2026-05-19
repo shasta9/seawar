@@ -8,13 +8,11 @@ import (
 
 // gameMapWire is the JSON wire format. It mirrors GameMap but encodes cells as row strings.
 type gameMapWire struct {
-	Width     int            `json:"width"`
-	Height    int            `json:"height"`
-	Cells     []string       `json:"cells"`
-	Ports     []Port         `json:"ports"`
-	Merchants []MerchantShip `json:"merchants"`
-	Start     StartPositions `json:"start"`
-	Meta      MapMeta        `json:"meta"`
+	Width  int      `json:"width"`
+	Height int      `json:"height"`
+	Cells  []string `json:"cells"`
+	Ports  []Port   `json:"ports"`
+	Meta   MapMeta  `json:"meta"`
 }
 
 func (m GameMap) MarshalJSON() ([]byte, error) {
@@ -32,13 +30,11 @@ func (m GameMap) MarshalJSON() ([]byte, error) {
 		rows[y] = sb.String()
 	}
 	wire := gameMapWire{
-		Width:     m.Width,
-		Height:    m.Height,
-		Cells:     rows,
-		Ports:     m.Ports,
-		Merchants: m.Merchants,
-		Start:     m.Start,
-		Meta:      m.Meta,
+		Width:  m.Width,
+		Height: m.Height,
+		Cells:  rows,
+		Ports:  m.Ports,
+		Meta:   m.Meta,
 	}
 	return json.Marshal(wire)
 }
@@ -72,8 +68,6 @@ func (m *GameMap) UnmarshalJSON(data []byte) error {
 	m.Height = wire.Height
 	m.Cells = cells
 	m.Ports = wire.Ports
-	m.Merchants = wire.Merchants
-	m.Start = wire.Start
 	m.Meta = wire.Meta
 	return nil
 }
